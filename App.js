@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { View, Button, Text } from "react-native";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import HomeScreen from "./Screens/HomeScreen";
+import SummaryScreen from "./Screens/SummaryScreen";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      <View>
+        <AppContainer />
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const switchScreen = createSwitchNavigator({
+  HomeScreen: { screen: HomeScreen },
+  SummaryScreen: { screen: SummaryScreen },
 });
+
+const AppContainer = createAppContainer(switchScreen);
